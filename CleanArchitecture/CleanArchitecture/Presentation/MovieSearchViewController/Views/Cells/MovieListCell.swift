@@ -43,6 +43,8 @@ final class MovieListCell: UITableViewCell {
         return label
     }()
     
+    private var viewModel: MovieSearchItemViewModel!
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addAllSubviews()
@@ -55,8 +57,8 @@ final class MovieListCell: UITableViewCell {
 }
 
 extension MovieListCell {
-    func configure() {
-        
+    func configure(viewModel: MovieSearchItemViewModel) {
+        self.viewModel = viewModel
     }
 }
 
