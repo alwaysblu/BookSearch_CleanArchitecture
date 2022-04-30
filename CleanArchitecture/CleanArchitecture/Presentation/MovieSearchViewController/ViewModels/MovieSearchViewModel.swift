@@ -7,12 +7,20 @@
 
 import Foundation
 
-final class MovieSearchViewModel {
+protocol MovieSearchViewModelInput {
+    func searchMovie(query: String)
+}
+protocol MovieSearchViewModelOutput {
+    var items: [MovieSearchItemViewModel] { get }
+}
+typealias MovieSearchViewModel = MovieSearchViewModelInput & MovieSearchViewModelOutput
+
+final class DefaultMovieSearchViewModel: MovieSearchViewModel {
     private var currentPage: Int = 0
     private var totalPage: Int = 1
     private var nextPage: Int { currentPage < totalPage ? currentPage + 1 : currentPage }
     private let useCase: SearchMoviesUseCase
-    var items: [MovieSearchItemViewModel] = []
+    private(set) var items: [MovieSearchItemViewModel] = []
     private var pages: [MoviesPage] = []
     private var loadTask: Cancellable? {
         willSet {
@@ -25,7 +33,7 @@ final class MovieSearchViewModel {
     }
 }
 
-extension MovieSearchViewModel {
+extension DefaultMovieSearchViewModel {
     func searchMovie(query: String) {
         loadTask = useCase.search(request: .init(query: query, page: nextPage)) { [weak self] result in
             switch result {

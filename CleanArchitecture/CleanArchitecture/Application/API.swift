@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct APIConfiguration {
     let baseURL: String
     let queryParameters: [String: String]

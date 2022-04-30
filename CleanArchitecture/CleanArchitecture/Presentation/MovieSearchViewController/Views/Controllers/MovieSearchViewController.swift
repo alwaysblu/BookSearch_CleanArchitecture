@@ -7,17 +7,17 @@
 
 import UIKit
 
-final class MoviewSearchViewController: UIViewController {
+final class MovieSearchViewController: UIViewController {
     
     private let searchBarController = UISearchController()
-    private let emptyLabel: UILabel = {
+    let emptyLabel: UILabel = {
         let label = UILabel()
         
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
-    private let tableView: UITableView = {
+    let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -26,8 +26,8 @@ final class MoviewSearchViewController: UIViewController {
     }()
     private var viewModel: MovieSearchViewModel!
     
-    static func create(viewModel: MovieSearchViewModel) -> MoviewSearchViewController {
-        let movieSearchViewController = MoviewSearchViewController()
+    static func create(viewModel: MovieSearchViewModel) -> MovieSearchViewController {
+        let movieSearchViewController = MovieSearchViewController()
         movieSearchViewController.viewModel = viewModel
         return movieSearchViewController
     }
@@ -37,17 +37,18 @@ final class MoviewSearchViewController: UIViewController {
         view.backgroundColor = .systemBackground
         setUp()
     }
-
-
 }
 
-extension MoviewSearchViewController {
+extension MovieSearchViewController {
     private func setUp() {
         setUpSearchBarController()
         setAllDelegates()
+        addAllSubviews()
+        setAllConstraints()
     }
     
     private func addAllSubviews() {
+        view.addSubview(tableView)
         view.addSubview(emptyLabel)
     }
     
@@ -59,16 +60,14 @@ extension MoviewSearchViewController {
     private func setUpSearchBarController() {
         navigationItem.searchController = searchBarController
         searchBarController.delegate = self
-        
-        
     }
 }
 
-extension MoviewSearchViewController: UITableViewDelegate {
+extension MovieSearchViewController: UITableViewDelegate {
     
 }
 
-extension MoviewSearchViewController: UITableViewDataSource {
+extension MovieSearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.items.count
     }
@@ -84,7 +83,7 @@ extension MoviewSearchViewController: UITableViewDataSource {
     }
 }
 
-extension MoviewSearchViewController: UISearchControllerDelegate {
+extension MovieSearchViewController: UISearchControllerDelegate {
     public func willPresentSearchController(_ searchController: UISearchController) {
         
     }
