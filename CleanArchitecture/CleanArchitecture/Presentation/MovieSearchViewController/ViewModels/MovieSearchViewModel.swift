@@ -14,17 +14,20 @@ final class MovieSearchViewModel {
     private let useCase: SearchMoviesUseCase
     var items: [MovieSearchItemViewModel] = []
     private var pages: [MoviesPage] = []
-    
+    private var loadTask: Cancellable? {
+        willSet {
+            loadTask?.cancel()
+        }
+    }
     
     init(useCase: SearchMoviesUseCase) {
         self.useCase = useCase
     }
-    
 }
 
 extension MovieSearchViewModel {
     func searchMovie(query: String) {
-        useCase.search(request: .init(query: query, page: nextPage)) { [weak self] result in
+        loadTask = useCase.search(request: .init(query: query, page: nextPage)) { [weak self] result in
             switch result {
             case .success(let response) :
                 self?.appendPage(response)

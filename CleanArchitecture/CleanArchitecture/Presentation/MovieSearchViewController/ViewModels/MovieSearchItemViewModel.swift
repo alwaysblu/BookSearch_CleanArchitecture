@@ -20,7 +20,9 @@ extension MovieSearchItemViewModel {
         overView = movie.description ?? ""
         posterImageUrl = movie.thumbNailUrl
         if let releaseDate = movie.date {
-            self.releaseDate = dateFormatter.string(from: releaseDate)
+            self.releaseDate = "Release Date: " + dateFormatter.string(from: releaseDate)
+        } else {
+            releaseDate = "To be announced"
         }
     }
 }
