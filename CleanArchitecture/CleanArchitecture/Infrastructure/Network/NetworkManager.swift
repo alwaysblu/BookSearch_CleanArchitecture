@@ -7,8 +7,28 @@
 
 import Foundation
 
-final public class NetworkManager {
-    public static let shared = NetworkManager(networkLoader: NetworkLoader())
+protocol NetworkManager {
+    init(networkLoader: NetworkLoader)
+    // MARK: Interface functions
+    
+    func sendRequest<Response>(url: URL,
+                               response: Response.Type,
+                               completion: @escaping (Result<Response, Error>) -> Void) -> Cancellable? where Response: Decodable
+    
+    /// application/json
+    func sendRequest<Request, Response>(url: URL,
+                                        request: RequestData<Request>,
+                                        response: Response.Type,
+                                        completion: @escaping (Result<Response, Error>) -> Void) -> Cancellable? where Request: Encodable, Response: Decodable
+    
+    /// multipartform
+    func sendRequest<Request, Response>(url: URL,
+                                        request: RequestData<Request>,
+                                        response: Response.Type,
+                                        completion: @escaping (Result<Response, Error>) -> Void) -> Cancellable? where Request: DictionaryGettable, Response: Decodable
+}
+
+final public class DefaultNetworkManager: NetworkManager {
     private var networkLoader: NetworkLoader
     
     init(networkLoader: NetworkLoader) {

@@ -9,14 +9,18 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
+    let appDIContainer = AppDIContainer()
+    var appFlowCoordinator: AppFlowCoordinator?
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
+        let navigationController = UINavigationController()
         
         window = UIWindow(windowScene: scene)
-        window?.rootViewController = UINavigationController(rootViewController: MovieSearchViewController.create(viewModel: DefaultMovieSearchViewModel(useCase: DefaultSearchMoviesUseCase(moviesRepository: DefaultMoviesRepository()))))
+        window?.rootViewController = navigationController
+        appFlowCoordinator = AppFlowCoordinator(navigationController: navigationController, appDIContainer: appDIContainer)
+        appFlowCoordinator?.start()
         window?.makeKeyAndVisible()
         
     }

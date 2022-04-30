@@ -7,7 +7,15 @@
 
 import Foundation
 
-struct NetworkLoader {
+protocol NetworkLoader {
+    init(session: URLSession)
+    
+    func loadData(with url: URL, completion: @escaping (Result<Data, Error>) -> Void) -> Cancellable?
+    
+    func loadData(with request: URLRequest, completion: @escaping (Result<Data, Error>) -> Void) -> Cancellable?
+}
+
+struct DefaultNetworkLoader: NetworkLoader {
     private let session: URLSession
     
     init(session: URLSession = .shared) {
