@@ -20,12 +20,6 @@ protocol NetworkManager {
                                         request: RequestData<Request>,
                                         response: Response.Type,
                                         completion: @escaping (Result<Response, Error>) -> Void) -> Cancellable? where Request: Encodable, Response: Decodable
-    
-    /// multipartform
-    func sendRequest<Request, Response>(url: URL,
-                                        request: RequestData<Request>,
-                                        response: Response.Type,
-                                        completion: @escaping (Result<Response, Error>) -> Void) -> Cancellable? where Request: DictionaryGettable, Response: Decodable
 }
 
 final public class DefaultNetworkManager: NetworkManager {
@@ -62,23 +56,6 @@ final public class DefaultNetworkManager: NetworkManager {
         }
     }
     
-    /// multipartform
-    func sendRequest<Request, Response>(url: URL,
-                                        request: RequestData<Request>,
-                                        response: Response.Type,
-                                        completion: @escaping (Result<Response, Error>) -> Void) -> Cancellable? where Request: DictionaryGettable, Response: Decodable {
-        
-        guard let dictionary = request.request?.dictionary,
-              let multipartformRequest = setRequest(url: url,
-                                       httpMethod: request.httpMethod,
-                                       accessToken: request.accessToken,
-                                       requestDictionary: dictionary) else { return nil }
-        
-        return networkLoader.loadData(with: multipartformRequest) { [weak self] result in
-            self?.handleResponseData(result: result, completion: completion)
-        }
-    }
-    
     // MARK: Private functions
     
     private func encodedData<T>(data: T) -> Data? where T: Encodable {
@@ -104,16 +81,6 @@ final public class DefaultNetworkManager: NetworkManager {
         }
         
         return request
-    }
-    
-    private func setRequest(url: URL,
-                            httpMethod: HTTPMethod,
-                            accessToken: String? = nil,
-                            requestDictionary: [String: Any?]) -> URLRequest? {
-        return MultipartForm.setRequest(url: url,
-                                        httpMethod: httpMethod,
-                                        accessToken: accessToken,
-                                        requestDictionary: requestDictionary)
     }
     
     private func handleResponseData<Response>(result: Result<Data, Error>,

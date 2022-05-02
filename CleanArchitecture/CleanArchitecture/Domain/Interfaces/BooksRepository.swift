@@ -8,7 +8,5 @@
 import Foundation
 
 protocol BooksRepository {
-    func fetchBooks(query: String,
-                     page: Int,
-                     completion: @escaping (Result<BooksPage, Error>) -> Void) -> Cancellable?
+    func fetchBooks(query: String, startIndex: Int, maxResults: Int, completion: @escaping (Result<BookPage, Error>) -> Void) -> Cancellable?
 }

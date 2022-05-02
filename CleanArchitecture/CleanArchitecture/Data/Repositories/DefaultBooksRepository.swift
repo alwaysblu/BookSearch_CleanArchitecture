@@ -15,11 +15,10 @@ final class DefaultBooksRepository: BooksRepository {
         self.dataTransferService = networkManager
     }
     
-    func fetchBooks(query: String, page: Int, completion: @escaping (Result<BooksPage, Error>) -> Void) -> Cancellable? {
-        guard let url = APIURL.getBookURL(query: BooksRequestDTO(query: query, page: page)) else { return nil }
-        let request = RequestData(httpMethod: .get, dataForm: .applicationJson, accessToken: nil, request: BooksRequestDTO(query: query, page: page))
+    func fetchBooks(query: String, startIndex: Int, maxResults: Int, completion: @escaping (Result<BookPage, Error>) -> Void) -> Cancellable? {
+        guard let url = APIURL.getBookURL(query: BooksRequestDTO(query: query, startIndex: startIndex, maxResults: maxResults)) else { return nil }
         
-        return dataTransferService.sendRequest(url: url, request: request, response: BooksResponseDTO.self) { result in
+        return dataTransferService.sendRequest(url: url, response: BooksResponseDTO.self) { result in
             switch result {
             case .success(let responseDTO) :
                 completion(.success(responseDTO.toDomain()))

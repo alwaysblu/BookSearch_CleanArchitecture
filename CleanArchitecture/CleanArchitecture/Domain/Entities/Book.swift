@@ -8,8 +8,9 @@
 import Foundation
 
 struct Book {
-    let thumbNailUrl: String?
     let title: String?
-    let date: Date?
-    let description: String?
+    let authors: [String]?
+    let publishedDate: String?
+    let smallThumbnail: String
+    let thumbnail: String
 }

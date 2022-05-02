@@ -9,12 +9,13 @@ import Foundation
 
 protocol SearchBooksUseCase {
     func search(request: SearchBooksUseCaseRequest,
-                completion: @escaping (Result<BooksPage, Error>) -> Void) -> Cancellable?
+                completion: @escaping (Result<BookPage, Error>) -> Void) -> Cancellable?
 }
 
 struct SearchBooksUseCaseRequest {
     let query: String
-    let page: Int
+    let startIndex: Int
+    let maxResult: Int
 }
 
 final class DefaultSearchBooksUseCase: SearchBooksUseCase {
@@ -25,9 +26,7 @@ final class DefaultSearchBooksUseCase: SearchBooksUseCase {
     }
     
     func search(request: SearchBooksUseCaseRequest,
-                completion: @escaping (Result<BooksPage, Error>) -> Void) -> Cancellable? {
-        return booksRepository.fetchBooks(query: request.query,
-                                            page: request.page,
-                                            completion: completion)
+                completion: @escaping (Result<BookPage, Error>) -> Void) -> Cancellable? {
+        return booksRepository.fetchBooks(query: request.query, startIndex: request.startIndex, maxResults: request.maxResult, completion: completion)
     }
 }

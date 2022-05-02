@@ -9,5 +9,6 @@ import Foundation
 
 struct BooksRequestDTO: Encodable {
     let query: String
-    let page: Int
+    let startIndex: Int
+    let maxResults: Int
 }

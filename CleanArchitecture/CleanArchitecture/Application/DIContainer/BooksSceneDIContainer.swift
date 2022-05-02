@@ -29,12 +29,16 @@ extension BooksSceneDIContainer {
         return DefaultBooksRepository(networkManager: dependencies.dataTransferService)
     }
     
+    func makeImageRepository() -> ImageRepository {
+        return DefaultImageRepository(networkManager: dependencies.dataTransferService)
+    }
+    
     func makeBooksSearchViewModel() -> BooksSearchViewModel {
         return DefaultBooksSearchViewModel(useCase: makeSearchBooksUseCase())
     }
     
     func makeBooksSearchViewController() -> BooksSearchViewController {
-        return BooksSearchViewController.create(viewModel: makeBooksSearchViewModel())
+        return BooksSearchViewController.create(viewModel: makeBooksSearchViewModel(), imageRepository: makeImageRepository())
     }
     
     func makeBooksSearchFlowCoordinator(navigationController: UINavigationController) -> BooksSearchFlowCoordinator {

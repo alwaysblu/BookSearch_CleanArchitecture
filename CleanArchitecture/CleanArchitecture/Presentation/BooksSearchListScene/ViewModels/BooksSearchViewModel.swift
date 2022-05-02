@@ -7,9 +7,18 @@
 
 import Foundation
 
+enum BooksListViewModelLoading {
+    case fullScreen
+    case nextPage
+}
+
 protocol BooksSearchViewModelInput {
     func searchBooks(query: String)
+    func didSearch(query: String)
+    func didCancelSearch()
+    var onUpdated: () -> Void { get set }
 }
+
 protocol BooksSearchViewModelOutput {
     var items: [BooksSearchItemViewModel] { get }
 }
@@ -20,12 +29,13 @@ final class DefaultBooksSearchViewModel: BooksSearchViewModel {
     private var totalPage: Int = 1
     private var nextPage: Int { currentPage < totalPage ? currentPage + 1 : currentPage }
     private let useCase: SearchBooksUseCase
-    private(set) var items: [BooksSearchItemViewModel] = [
-        BooksSearchItemViewModel(title: "title",
-                                 overView: "overViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverViewoverView",
-                                 releaseDate: "release Date",
-                                 posterImageUrl: nil)]
-    private var pages: [BooksPage] = []
+    var onUpdated: () -> Void = {}
+    private(set) var items: [BooksSearchItemViewModel] = [] {
+        didSet {
+            onUpdated()
+        }
+    }
+    private var pages: [BookPage] = []
     private var loadTask: Cancellable? {
         willSet {
             loadTask?.cancel()
@@ -35,11 +45,16 @@ final class DefaultBooksSearchViewModel: BooksSearchViewModel {
     init(useCase: SearchBooksUseCase) {
         self.useCase = useCase
     }
+    
+    private func update(bookQuery: BookQuery) {
+        resetPages()
+        load(bookQuery: bookQuery, loading: .fullScreen)
+    }
 }
 
 extension DefaultBooksSearchViewModel {
     func searchBooks(query: String) {
-        loadTask = useCase.search(request: .init(query: query, page: nextPage)) { [weak self] result in
+        loadTask = useCase.search(request: .init(query: query, startIndex: 0, maxResult: 10)) { [weak self] result in
             switch result {
             case .success(let response) :
                 self?.appendPage(response)
@@ -49,7 +64,7 @@ extension DefaultBooksSearchViewModel {
         }
     }
     
-    private func appendPage(_ booksPage: BooksPage) {
+    private func appendPage(_ booksPage: BookPage) {
         currentPage = booksPage.page
         totalPage = booksPage.totalPages
 
@@ -57,7 +72,7 @@ extension DefaultBooksSearchViewModel {
             .filter { $0.page != booksPage.page }
             + [booksPage]
 
-        items = pages.flatMap{$0.books}.map(BooksSearchItemViewModel.init)
+        items = pages.flatMap{$0.books}.map (BooksSearchItemViewModel.init)
     }
     
     private func resetPages() {
@@ -65,5 +80,35 @@ extension DefaultBooksSearchViewModel {
         totalPage = 1
         pages.removeAll()
         items.removeAll()
+    }
+    
+    private func load(bookQuery: BookQuery,
+                      loading: BooksListViewModelLoading) {
+//        self.loading.value = loading
+//        query.value = bookQuery.query
+
+        loadTask = useCase.search (
+            request: .init(query: bookQuery.query, startIndex: 0, maxResult: 40),
+            completion: { result in
+                switch result {
+                case .success(let page):
+                    self.appendPage(page)
+                case .failure(let error):
+                    "\(error)".log()
+                }
+//                self.loading.value = .none
+        })
+    }
+    
+}
+
+extension DefaultBooksSearchViewModel {
+    func didSearch(query: String) {
+        guard !query.isEmpty else { return }
+        update(bookQuery: BookQuery(query: query))
+    }
+
+    func didCancelSearch() {
+        loadTask?.cancel()
     }
 }

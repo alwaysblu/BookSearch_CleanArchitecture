@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BooksPage {
+struct BookPage {
     let page: Int
     let totalPages: Int
     let books: [Book]

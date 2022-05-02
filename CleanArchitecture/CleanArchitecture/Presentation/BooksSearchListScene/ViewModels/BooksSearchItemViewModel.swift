@@ -8,22 +8,20 @@
 import Foundation
 
 struct BooksSearchItemViewModel {
-    let title: String
-    let overView: String
-    let releaseDate: String
-    let posterImageUrl: String?
+    let title: String?
+    let authors: [String]?
+    let publishedDate: String?
+    let smallThumbnail: String
+    let thumbnail: String
 }
 
 extension BooksSearchItemViewModel {
     init(book: Book) {
-        self.title = book.title ?? ""
-        overView = book.description ?? ""
-        posterImageUrl = book.thumbNailUrl
-        if let releaseDate = book.date {
-            self.releaseDate = "Release Date: " + dateFormatter.string(from: releaseDate)
-        } else {
-            releaseDate = "To be announced"
-        }
+        title = book.title
+        authors = book.authors
+        publishedDate = book.publishedDate
+        smallThumbnail = book.smallThumbnail
+        thumbnail = book.thumbnail
     }
 }
 

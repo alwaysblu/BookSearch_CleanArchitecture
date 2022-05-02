@@ -14,7 +14,7 @@ final class BookListCell: UITableViewCell {
         let imageView = UIImageView()
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFit
         
         return imageView
     }()
@@ -22,7 +22,7 @@ final class BookListCell: UITableViewCell {
         let label = UILabel()
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 20)
+        label.font = .systemFont(ofSize: 15)
         label.numberOfLines = 0
         
         return label
@@ -31,7 +31,7 @@ final class BookListCell: UITableViewCell {
         let label = UILabel()
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 15)
+        label.font = .systemFont(ofSize: 8)
         label.numberOfLines = 0
         
         return label
@@ -45,12 +45,26 @@ final class BookListCell: UITableViewCell {
         
         return label
     }()
+    lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, dateLabel, descriptionLabel])
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.alignment = .fill
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 5
+        stackView.axis = .vertical
+        
+        return stackView
+    }()
+    private var loadTask: Cancellable? {
+        willSet{ loadTask?.cancel() }
+    }
     
     private var viewModel: BooksSearchItemViewModel! {
         didSet {
             titleLabel.text = viewModel.title
-            dateLabel.text = viewModel.releaseDate
-            descriptionLabel.text = viewModel.overView
+            dateLabel.text = viewModel.publishedDate
+            descriptionLabel.text = viewModel.authors?.joined()
         }
     }
     
@@ -67,16 +81,25 @@ final class BookListCell: UITableViewCell {
 }
 
 extension BookListCell {
-    func configure(viewModel: BooksSearchItemViewModel) {
+    func configure(viewModel: BooksSearchItemViewModel, imageRepository: ImageRepository?) {
         self.viewModel = viewModel
+        loadTask = imageRepository?.downloadImage(url: viewModel.thumbnail) { [weak self] result in
+            switch result {
+            case .success(let image):
+                DispatchQueue.main.async {
+                    self?.posterImageView.image = image
+                }
+            case .failure(let error):
+                "\(error)".log()
+            }
+        }
     }
+    
 }
 
 extension BookListCell {
     private func addAllSubviews() {
         contentView.addSubview(posterImageView)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(dateLabel)
-        contentView.addSubview(descriptionLabel)
+        contentView.addSubview(stackView)
     }
 }

@@ -8,8 +8,8 @@
 import UIKit
 
 final class BooksSearchViewController: UIViewController {
-    
-    private let searchBarController = UISearchController()
+    var imageRepository: ImageRepository?
+    private let searchController = UISearchController()
     let emptyLabel: UILabel = {
         let label = UILabel()
         
@@ -27,9 +27,10 @@ final class BooksSearchViewController: UIViewController {
     }()
     private var viewModel: BooksSearchViewModel!
     
-    static func create(viewModel: BooksSearchViewModel) -> BooksSearchViewController {
+    static func create(viewModel: BooksSearchViewModel, imageRepository: ImageRepository) -> BooksSearchViewController {
         let booksSearchViewController = BooksSearchViewController()
         booksSearchViewController.viewModel = viewModel
+        booksSearchViewController.imageRepository = imageRepository
         return booksSearchViewController
     }
     
@@ -46,6 +47,12 @@ extension BooksSearchViewController {
         setAllDelegates()
         addAllSubviews()
         setAllConstraints()
+        setupSearchController()
+        viewModel.onUpdated = {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     private func addAllSubviews() {
@@ -59,15 +66,26 @@ extension BooksSearchViewController {
     }
     
     private func setUpSearchBarController() {
-        navigationItem.searchController = searchBarController
-        searchBarController.delegate = self
-        
-        
+        navigationItem.searchController = searchController
+        searchController.delegate = self
+    }
+    
+    private func setupSearchController() {
+        searchController.delegate = self
+        searchController.searchBar.delegate = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.translatesAutoresizingMaskIntoConstraints = true
+        searchController.searchBar.barStyle = .black
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.autoresizingMask = [.flexibleWidth]
+        definesPresentationContext = true
     }
 }
 
 extension BooksSearchViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
 }
 
 extension BooksSearchViewController: UITableViewDataSource {
@@ -80,9 +98,21 @@ extension BooksSearchViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.configure(viewModel: viewModel.items[indexPath.row])
+        cell.configure(viewModel: viewModel.items[indexPath.row], imageRepository: imageRepository)
         
         return cell
+    }
+}
+
+extension BooksSearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text, !searchText.isEmpty else { return }
+        searchController.isActive = false
+        viewModel.didSearch(query: searchText)
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.didCancelSearch()
     }
 }
 
