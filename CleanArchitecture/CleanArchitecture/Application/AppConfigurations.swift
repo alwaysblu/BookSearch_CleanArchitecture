@@ -25,7 +25,7 @@ enum APIURL {
     private static let imageConfig = APIConfiguration(baseURL: AppConfigurations.imageBaseUrl,
                                                       queryParameters: [:])
     
-    static func getMovieURL(query: MoviesRequestDTO) -> URL? {
+    static func getBookURL(query: BooksRequestDTO) -> URL? {
         var path = "?page=\(query.page)&query=\(query.query)"
         apiConfig.queryParameters.forEach {
             path += "&\($0.key)=\($0.value)"

@@ -1,5 +1,5 @@
 //
-//  MoviewSearchViewController.swift
+//  BooksSearchViewController.swift
 //  CleanArchitecture
 //
 //  Created by 최정민 on 2022/04/29.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MovieSearchViewController: UIViewController {
+final class BooksSearchViewController: UIViewController {
     
     private let searchBarController = UISearchController()
     let emptyLabel: UILabel = {
@@ -21,15 +21,16 @@ final class MovieSearchViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .plain)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(BookListCell.classForCoder(), forCellReuseIdentifier: BookListCell.identifier)
         
         return tableView
     }()
-    private var viewModel: MovieSearchViewModel!
+    private var viewModel: BooksSearchViewModel!
     
-    static func create(viewModel: MovieSearchViewModel) -> MovieSearchViewController {
-        let movieSearchViewController = MovieSearchViewController()
-        movieSearchViewController.viewModel = viewModel
-        return movieSearchViewController
+    static func create(viewModel: BooksSearchViewModel) -> BooksSearchViewController {
+        let booksSearchViewController = BooksSearchViewController()
+        booksSearchViewController.viewModel = viewModel
+        return booksSearchViewController
     }
     
     override func viewDidLoad() {
@@ -39,7 +40,7 @@ final class MovieSearchViewController: UIViewController {
     }
 }
 
-extension MovieSearchViewController {
+extension BooksSearchViewController {
     private func setUp() {
         setUpSearchBarController()
         setAllDelegates()
@@ -60,20 +61,22 @@ extension MovieSearchViewController {
     private func setUpSearchBarController() {
         navigationItem.searchController = searchBarController
         searchBarController.delegate = self
+        
+        
     }
 }
 
-extension MovieSearchViewController: UITableViewDelegate {
+extension BooksSearchViewController: UITableViewDelegate {
     
 }
 
-extension MovieSearchViewController: UITableViewDataSource {
+extension BooksSearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieListCell.identifier, for: indexPath) as? MovieListCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: BookListCell.identifier, for: indexPath) as? BookListCell else {
             return UITableViewCell()
         }
         
@@ -83,7 +86,7 @@ extension MovieSearchViewController: UITableViewDataSource {
     }
 }
 
-extension MovieSearchViewController: UISearchControllerDelegate {
+extension BooksSearchViewController: UISearchControllerDelegate {
     public func willPresentSearchController(_ searchController: UISearchController) {
         
     }

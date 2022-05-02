@@ -1,5 +1,5 @@
 //
-//  MovieListCell.swift
+//  BookListCell.swift
 //  CleanArchitecture
 //
 //  Created by 최정민 on 2022/04/29.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-final class MovieListCell: UITableViewCell {
-    static let identifier = "MovieListCell"
+final class BookListCell: UITableViewCell {
+    static let identifier = "BookListCell"
     
     let posterImageView: UIImageView = {
         let imageView = UIImageView()
@@ -23,6 +23,7 @@ final class MovieListCell: UITableViewCell {
         
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 20)
+        label.numberOfLines = 0
         
         return label
     }()
@@ -31,6 +32,7 @@ final class MovieListCell: UITableViewCell {
         
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 15)
+        label.numberOfLines = 0
         
         return label
     }()
@@ -39,14 +41,22 @@ final class MovieListCell: UITableViewCell {
         
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 10)
+        label.numberOfLines = 0
         
         return label
     }()
     
-    private var viewModel: MovieSearchItemViewModel!
+    private var viewModel: BooksSearchItemViewModel! {
+        didSet {
+            titleLabel.text = viewModel.title
+            dateLabel.text = viewModel.releaseDate
+            descriptionLabel.text = viewModel.overView
+        }
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.selectionStyle = .none
         addAllSubviews()
         setAllConstraints()
     }
@@ -56,13 +66,13 @@ final class MovieListCell: UITableViewCell {
     }
 }
 
-extension MovieListCell {
-    func configure(viewModel: MovieSearchItemViewModel) {
+extension BookListCell {
+    func configure(viewModel: BooksSearchItemViewModel) {
         self.viewModel = viewModel
     }
 }
 
-extension MovieListCell {
+extension BookListCell {
     private func addAllSubviews() {
         contentView.addSubview(posterImageView)
         contentView.addSubview(titleLabel)

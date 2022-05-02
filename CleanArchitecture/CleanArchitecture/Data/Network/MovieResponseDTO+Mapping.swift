@@ -1,5 +1,5 @@
 //
-//  MovieResponseDTO+Mapping.swift
+//  BooksResponseDTO+Mapping.swift
 //  CleanArchitecture
 //
 //  Created by 최정민 on 2022/04/30.
@@ -9,19 +9,19 @@ import Foundation
 
 // MARK: - Data Transfer Object
 
-struct MoviesResponseDTO: Decodable {
+struct BooksResponseDTO: Decodable {
     private enum CodingKeys: String, CodingKey {
         case page
         case totalPages = "total_pages"
-        case movies = "results"
+        case books = "results"
     }
     let page: Int
     let totalPages: Int
-    let movies: [MovieDTO]
+    let books: [BookDTO]
 }
 
-extension MoviesResponseDTO {
-    struct MovieDTO: Decodable {
+extension BooksResponseDTO {
+    struct BookDTO: Decodable {
         private enum CodingKeys: String, CodingKey {
             case title
             case posterPath = "poster_path"
@@ -37,16 +37,16 @@ extension MoviesResponseDTO {
 
 // MARK: - Mappings to Domain
 
-extension MoviesResponseDTO {
-    func toDomain() -> MoviesPage {
+extension BooksResponseDTO {
+    func toDomain() -> BooksPage {
         return .init(page: page,
                      totalPages: totalPages,
-                     movies: movies.map { $0.toDomain() })
+                     books: books.map { $0.toDomain() })
     }
 }
 
-extension MoviesResponseDTO.MovieDTO {
-    func toDomain() -> Movie {
+extension BooksResponseDTO.BookDTO {
+    func toDomain() -> Book {
         return .init(thumbNailUrl: posterPath,
                      title: title,
                      date: dateFormatter.date(from: releaseDate ?? ""),

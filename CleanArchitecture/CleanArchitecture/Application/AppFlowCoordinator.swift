@@ -8,7 +8,6 @@
 import UIKit
 
 final class AppFlowCoordinator {
-    
     var navigationController: UINavigationController
     private let appDIContainer: AppDIContainer
     
@@ -20,8 +19,8 @@ final class AppFlowCoordinator {
 
 extension AppFlowCoordinator {
     func start() {
-        let moviesSceneDIContainer = appDIContainer.makeMoviesSceneDIContainer()
-        let flow = moviesSceneDIContainer.makeMovieSearchFlowCoordinator(navigationController: navigationController)
+        let booksSceneDIContainer = appDIContainer.makeBooksSceneDIContainer()
+        let flow = booksSceneDIContainer.makeBooksSearchFlowCoordinator(navigationController: navigationController)
         
         flow.start()
     }

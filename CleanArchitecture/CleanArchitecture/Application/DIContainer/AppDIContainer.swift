@@ -17,9 +17,9 @@ final class AppDIContainer {
         return networkManager
     }()
     
-    func makeMoviesSceneDIContainer() -> MoviesSceneDIContainer {
-        let dependencies = MoviesSceneDIContainer.Dependencies(dataTransferService: dataTransferService)
+    func makeBooksSceneDIContainer() -> BooksSceneDIContainer {
+        let dependencies = BooksSceneDIContainer.Dependencies(dataTransferService: dataTransferService)
         
-        return MoviesSceneDIContainer(dependencies: dependencies)
+        return BooksSceneDIContainer(dependencies: dependencies)
     }
 }
