@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "FC93B243-64B3-4471-8D3C-5E05760A91FE"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "839ABEB8-6BF8-4A42-B516-595BB7F9C54B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CleanArchitecture/Presentation/BooksSearchListScene/ViewModels/BooksSearchViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "load(bookQuery:loading:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "839ABEB8-6BF8-4A42-B516-595BB7F9C54B - c1b28ab6e19908d2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CleanArchitecture.DefaultBooksSearchViewModel.load(bookQuery: CleanArchitecture.BookQuery, loading: CleanArchitecture.BooksListViewModelLoading) -&gt; ()"
+                  moduleName = "CleanArchitecture"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/choejeongmin/Documents/iOS/MovieSearch_CleanArchitecture/CleanArchitecture/CleanArchitecture/Presentation/BooksSearchListScene/ViewModels/BooksSearchViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  uuid = "839ABEB8-6BF8-4A42-B516-595BB7F9C54B - 38300dc0bdf8497b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (CleanArchitecture.BookPage) -&gt; Swift.Array&lt;CleanArchitecture.Book&gt; in implicit closure #1 () throws -&gt; Swift.Bool in CleanArchitecture.DefaultBooksSearchViewModel.load(bookQuery: CleanArchitecture.BookQuery, loading: CleanArchitecture.BooksListViewModelLoading) -&gt; ()"
+                  moduleName = "CleanArchitecture"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/choejeongmin/Documents/iOS/MovieSearch_CleanArchitecture/CleanArchitecture/CleanArchitecture/Presentation/BooksSearchListScene/ViewModels/BooksSearchViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "839ABEB8-6BF8-4A42-B516-595BB7F9C54B - b79860fc4d02ecc9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #3 (CleanArchitecture.Book) -&gt; CleanArchitecture.BooksSearchItemViewModel in implicit closure #1 () throws -&gt; Swift.Bool in CleanArchitecture.DefaultBooksSearchViewModel.load(bookQuery: CleanArchitecture.BookQuery, loading: CleanArchitecture.BooksListViewModelLoading) -&gt; ()"
+                  moduleName = "CleanArchitecture"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/choejeongmin/Documents/iOS/MovieSearch_CleanArchitecture/CleanArchitecture/CleanArchitecture/Presentation/BooksSearchListScene/ViewModels/BooksSearchViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104"
+                  offsetFromSymbolStart = "44">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "52ABC349-128B-460E-8017-CDFBE2F17461"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CleanArchitecture/Data/Repositories/DefaultBooksRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "fetchBooks(query:startIndex:maxResults:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A1B654A8-3B5F-47E7-B1AC-D383E0838FA3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CleanArchitecture/Data/Network/BooksResponseDTO+Mapping.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "toDomain()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "33804995-0B9C-4079-80EB-FA800DE9C342"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CleanArchitecture/Data/Repositories/DefaultBooksRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "fetchBooks(query:startIndex:maxResults:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5A6719AB-B41C-496A-9BFA-B9A1E11EBA51"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CleanArchitecture/Data/Repositories/DefaultBooksRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "fetchBooks(query:startIndex:maxResults:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5A6719AB-B41C-496A-9BFA-B9A1E11EBA51 - e86f1fa8332eac56"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CleanArchitecture.DefaultBooksRepository.fetchBooks(query: Swift.String, startIndex: Swift.Int, maxResults: Swift.Int, completion: (Swift.Result&lt;CleanArchitecture.BookPage, Swift.Error&gt;) -&gt; ()) -&gt; Swift.Optional&lt;CleanArchitecture.Cancellable&gt;"
+                  moduleName = "CleanArchitecture"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/choejeongmin/Documents/iOS/MovieSearch_CleanArchitecture/CleanArchitecture/CleanArchitecture/Data/Repositories/DefaultBooksRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "412">
+               </Location>
+               <Location
+                  uuid = "5A6719AB-B41C-496A-9BFA-B9A1E11EBA51 - bcf4aee73aad85fe"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;CleanArchitecture.BooksResponseDTO, Swift.Error&gt;) -&gt; () in CleanArchitecture.DefaultBooksRepository.fetchBooks(query: Swift.String, startIndex: Swift.Int, maxResults: Swift.Int, completion: (Swift.Result&lt;CleanArchitecture.BookPage, Swift.Error&gt;) -&gt; ()) -&gt; Swift.Optional&lt;CleanArchitecture.Cancellable&gt;"
+                  moduleName = "CleanArchitecture"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/choejeongmin/Documents/iOS/MovieSearch_CleanArchitecture/CleanArchitecture/CleanArchitecture/Data/Repositories/DefaultBooksRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "120">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ACFEF7B1-BC2A-4891-A0B9-64C404A6F076"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CleanArchitecture/Data/Repositories/DefaultBooksRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "fetchBooks(query:startIndex:maxResults:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "27D561DD-799D-48EA-B149-1079BF7AF68B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CleanArchitecture/Presentation/BooksSearchListScene/ViewModels/BooksSearchViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "load(bookQuery:loading:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3883358D-8CAB-4602-B5A2-C706B73C1497"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CleanArchitecture/Data/Repositories/DefaultBooksRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "fetchBooks(query:startIndex:maxResults:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
