@@ -9,13 +9,8 @@ import XCTest
 
 class SearchBooksUseCaseTests: XCTestCase {
     
-    static let booksPages: [BooksPage] = {
-        let page1 = BooksPage(page: 1, totalPages: 2, books: [
-            Book(thumbNailUrl: "1", title: "title1", date: nil, description: "overview1"),
-                                Book(thumbNailUrl: "2", title: "title2", date: nil, description: "overview2")])
-        let page2 = BooksPage(page: 2, totalPages: 2, books: [
-                                Book(thumbNailUrl: "3", title: "title3", date: nil, description: "overview3")])
-        return [page1, page2]
+    static let booksPages: [BookPage] = {
+        return []
     }()
     
     enum BooksRepositorySuccessTestError: Error {

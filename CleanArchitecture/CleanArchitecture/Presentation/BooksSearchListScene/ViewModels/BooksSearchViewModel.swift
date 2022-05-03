@@ -8,6 +8,19 @@
 import Foundation
 import RxSwift
 
+enum BookPageListHandler {
+    static func getViewModels(pages: [BookPage]) -> [BooksSearchItemViewModel] {
+        return pages.flatMap{$0.books}.map (BooksSearchItemViewModel.init)
+    }
+    static func getBooks(pages: [BookPage]) -> [Book] {
+        return pages.flatMap{$0.books}
+    }
+    
+    static func getCountOfViewModels(pages: [BookPage]) -> Int {
+        return pages.flatMap({ $0.books }).map (BooksSearchItemViewModel.init).count
+    }
+}
+
 struct BooksSearchViewModelActions {
     let showBookDetails: (Book) -> Void
 }
@@ -63,7 +76,7 @@ final class DefaultBooksSearchViewModel: BooksSearchViewModel {
 
 extension DefaultBooksSearchViewModel {
     func showBookDetails(at index: Int) {
-        let books = pages.flatMap{$0.books}
+        let books = BookPageListHandler.getBooks(pages: pages)
         actions?.showBookDetails(books[index])
     }
     
@@ -71,7 +84,7 @@ extension DefaultBooksSearchViewModel {
         totalItems = booksPage.totalItems
         pages = pages + [booksPage]
         currentPage = pages.count
-        let items = pages.flatMap{$0.books}.map (BooksSearchItemViewModel.init)
+        let items = BookPageListHandler.getViewModels(pages: pages)
         itemsCount = items.count
         itemsObserverable.onNext(items)
     }
@@ -86,11 +99,10 @@ extension DefaultBooksSearchViewModel {
     private func load(bookQuery: BookQuery,
                       loading: BooksListViewModelLoading) {
         guard totalItems == nil ||
-                totalItems ?? 0 > pages.flatMap({ $0.books })
-                                       .map (BooksSearchItemViewModel.init).count else {
+                totalItems ?? 0 > BookPageListHandler.getCountOfViewModels(pages: pages) else {
             return
         }
-        let totalItemsCount = pages.flatMap{$0.books}.map (BooksSearchItemViewModel.init).count
+        let totalItemsCount = BookPageListHandler.getCountOfViewModels(pages: pages)
         
         loadingObservable.onNext(loading)
         query = bookQuery.query
