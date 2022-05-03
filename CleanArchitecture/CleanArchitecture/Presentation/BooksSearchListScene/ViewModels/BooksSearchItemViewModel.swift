@@ -11,7 +11,6 @@ struct BooksSearchItemViewModel {
     let title: String?
     let authors: [String]?
     let publishedDate: String?
-    let smallThumbnail: String
     let thumbnail: String
 }
 
@@ -20,7 +19,6 @@ extension BooksSearchItemViewModel {
         title = book.title
         authors = book.authors
         publishedDate = book.publishedDate
-        smallThumbnail = book.smallThumbnail
         thumbnail = book.thumbnail
     }
 }

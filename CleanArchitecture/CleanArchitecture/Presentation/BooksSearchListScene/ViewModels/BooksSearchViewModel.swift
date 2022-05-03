@@ -29,6 +29,7 @@ protocol BooksSearchViewModelOutput {
     var loadingObservable: PublishSubject<BooksListViewModelLoading?> { get }
     var itemsCount: Int { get }
 }
+
 typealias BooksSearchViewModel = BooksSearchViewModelInput & BooksSearchViewModelOutput
 
 final class DefaultBooksSearchViewModel: BooksSearchViewModel {
@@ -95,16 +96,15 @@ extension DefaultBooksSearchViewModel {
         query = bookQuery.query
         
         loadTask = useCase.search (
-            request: .init(query: bookQuery.query, startIndex: totalItemsCount, maxResult: maxResult),
-            completion: { result in
+            request: .init(query: bookQuery.query, startIndex: totalItemsCount, maxResult: maxResult)) { [weak self] result in
                 switch result {
                 case .success(let page):
-                    self.appendPage(page)
+                    self?.appendPage(page)
                 case .failure(let error):
                     "\(error.localizedDescription)".log()
                 }
-                self.loadingObservable.onNext(.none)
-        })
+                self?.loadingObservable.onNext(.none)
+        }
     }
 }
 

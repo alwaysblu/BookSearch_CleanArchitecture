@@ -94,12 +94,16 @@ extension BookListCell {
         loadTask = imageRepository?.downloadImage(url: viewModel.thumbnail) { [weak self] result in
             switch result {
             case .success(let image):
-                DispatchQueue.main.async {
-                    self?.posterImageView.image = image
-                }
+                self?.set(image: image)
             case .failure(let error):
                 "\(error)".log()
             }
+        }
+    }
+    
+    private func set(image: UIImage?) {
+        DispatchQueue.main.async {
+            self.posterImageView.image = image
         }
     }
 }

@@ -28,7 +28,6 @@ extension BooksResponseDTO {
     }
     
     struct Thumbnail: Decodable {
-        let smallThumbnail: String
         let thumbnail: String
     }
 }
@@ -47,19 +46,7 @@ extension BooksResponseDTO.BookDTO {
         return .init(title: volumeInfo.title,
                      authors: volumeInfo.authors,
                      publishedDate: volumeInfo.publishedDate,
-                     smallThumbnail: volumeInfo.imageLinks?.smallThumbnail ?? "",
                      thumbnail: volumeInfo.imageLinks?.thumbnail ?? "",
                      infoLink: volumeInfo.infoLink)
     }
 }
-
-// MARK: - Private
-
-private let dateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd"
-    formatter.calendar = Calendar(identifier: .iso8601)
-    formatter.timeZone = TimeZone(secondsFromGMT: 0)
-    formatter.locale = Locale(identifier: "en_US_POSIX")
-    return formatter
-}()
