@@ -51,6 +51,7 @@
 		8AEE1BE02820B03800A9E1B1 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 8AEE1BDF2820B03800A9E1B1 /* RxRelay */; };
 		8AEE1BE82820D18500A9E1B1 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1BE72820D18500A9E1B1 /* UITableView+Extension.swift */; };
 		8AEE1BEA2820FB2400A9E1B1 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1BE92820FB2400A9E1B1 /* LoadingView.swift */; };
+		8AEE1BEF28211BB200A9E1B1 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1BEE28211BB200A9E1B1 /* ImageCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,7 @@
 		8AEE1BC8281FF38600A9E1B1 /* DefaultImageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultImageRepository.swift; sourceTree = "<group>"; };
 		8AEE1BE72820D18500A9E1B1 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		8AEE1BE92820FB2400A9E1B1 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		8AEE1BEE28211BB200A9E1B1 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +237,7 @@
 			children = (
 				8AEE1B52281D397100A9E1B1 /* Network */,
 				8AEE1B39281D33D100A9E1B1 /* Repositories */,
+				8AEE1BED28211B7A00A9E1B1 /* Cache */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -431,6 +434,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		8AEE1BED28211B7A00A9E1B1 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				8AEE1BEE28211BB200A9E1B1 /* ImageCache.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -570,6 +581,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AEE1BEF28211BB200A9E1B1 /* ImageCache.swift in Sources */,
 				8AEE1B63281D8E7900A9E1B1 /* AppFlowCoordinator.swift in Sources */,
 				8AEE1B5A281D49E500A9E1B1 /* BooksSearchViewController+Constraints.swift in Sources */,
 				8AEE1B5D281D566F00A9E1B1 /* AppDIContainer.swift in Sources */,

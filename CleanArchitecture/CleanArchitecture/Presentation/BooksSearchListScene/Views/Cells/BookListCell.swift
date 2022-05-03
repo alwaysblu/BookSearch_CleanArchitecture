@@ -2,7 +2,7 @@
 //  BookListCell.swift
 //  CleanArchitecture
 //
-//  Created by 최정민 on 2022/04/29.
+//  Created by 최정민 on 2022/05/02.
 //
 
 import UIKit
@@ -91,7 +91,7 @@ final class BookListCell: UITableViewCell {
 extension BookListCell {
     func configure(viewModel: BooksSearchItemViewModel, imageRepository: ImageRepository?) {
         self.viewModel = viewModel
-        loadTask = imageRepository?.downloadImage(url: viewModel.thumbnail) { [weak self] result in
+        loadTask = imageRepository?.downloadImage(urlString: viewModel.thumbnail) { [weak self] result in
             switch result {
             case .success(let image):
                 self?.set(image: image)

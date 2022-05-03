@@ -2,17 +2,17 @@
 //  BooksSceneDIContainer.swift
 //  CleanArchitecture
 //
-//  Created by 최정민 on 2022/04/30.
+//  Created by 최정민 on 2022/05/02.
 //
 
 import UIKit
 
 final class BooksSceneDIContainer {
-    
     private let dependencies: Dependencies
     
     struct Dependencies {
         let dataTransferService: NetworkManager
+        let imageCache: ImageCache
     }
     
     init(dependencies: Dependencies) {
@@ -30,7 +30,7 @@ extension BooksSceneDIContainer {
     }
     
     func makeImageRepository() -> ImageRepository {
-        return DefaultImageRepository(networkManager: dependencies.dataTransferService)
+        return DefaultImageRepository(networkManager: dependencies.dataTransferService, imageCache: dependencies.imageCache)
     }
     
     func makeBooksSearchViewModel(actions: BooksSearchViewModelActions) -> BooksSearchViewModel {

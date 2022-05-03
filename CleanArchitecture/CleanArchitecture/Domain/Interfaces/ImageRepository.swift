@@ -8,6 +8,6 @@
 import UIKit
 
 protocol ImageRepository {
-    func downloadImage(url: String,
+    func downloadImage(urlString: String,
                     completion: @escaping (Result<UIImage?, Error>) -> Void) -> Cancellable?
 }
