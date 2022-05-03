@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import SafariServices
 
 protocol BooksSearchFlowCoordinatorDependencies {
-    func makeBooksSearchViewController() -> BooksSearchViewController
+    func makeBooksSearchViewController(actions: BooksSearchViewModelActions) -> BooksSearchViewController
 }
 
 final class BooksSearchFlowCoordinator {
@@ -22,8 +23,15 @@ final class BooksSearchFlowCoordinator {
     }
     
     func start() {
-        let viewController = dependencies.makeBooksSearchViewController()
+        let actions = BooksSearchViewModelActions(showBookDetails: showDetailInformation)
+        let viewController = dependencies.makeBooksSearchViewController(actions: actions)
         navigationController.pushViewController(viewController, animated: true)
         booksSearchViewController = viewController
+    }
+    
+    func showDetailInformation(book: Book) {
+        guard let url = URL(string: book.infoLink) else { return }
+        let detailViewController: SFSafariViewController = SFSafariViewController(url: url)
+        navigationController.pushViewController(detailViewController, animated: true)
     }
 }

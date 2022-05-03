@@ -24,9 +24,3 @@ extension BooksSearchItemViewModel {
         thumbnail = book.thumbnail
     }
 }
-
-private let dateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .medium
-    return formatter
-}()

@@ -10,7 +10,6 @@ import UIKit
 extension BooksSearchViewController {
     func setAllConstraints() {
         setConstraintsOfTableView()
-        setConstraintsOfEmptyLabel()
     }
     
     func setConstraintsOfTableView() {
@@ -19,13 +18,6 @@ extension BooksSearchViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-    }
-    
-    func setConstraintsOfEmptyLabel() {
-        NSLayoutConstraint.activate([
-            emptyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            emptyLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
 }

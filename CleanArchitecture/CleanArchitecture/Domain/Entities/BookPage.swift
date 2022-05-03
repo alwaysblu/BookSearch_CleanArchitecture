@@ -8,7 +8,6 @@
 import Foundation
 
 struct BookPage {
-    let page: Int
-    let totalPages: Int
+    let totalItems: Int
     let books: [Book]
 }

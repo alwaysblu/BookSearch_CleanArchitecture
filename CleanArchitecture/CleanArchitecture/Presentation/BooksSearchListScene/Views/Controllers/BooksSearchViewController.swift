@@ -6,17 +6,12 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 final class BooksSearchViewController: UIViewController {
-    var imageRepository: ImageRepository?
+    private var imageRepository: ImageRepository?
     private let searchController = UISearchController()
-    let emptyLabel: UILabel = {
-        let label = UILabel()
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }()
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         
@@ -26,6 +21,8 @@ final class BooksSearchViewController: UIViewController {
         return tableView
     }()
     private var viewModel: BooksSearchViewModel!
+    private let disposeBag = DisposeBag()
+    private var nextPageLoadingSpinner: UIActivityIndicatorView?
     
     static func create(viewModel: BooksSearchViewModel, imageRepository: ImageRepository) -> BooksSearchViewController {
         let booksSearchViewController = BooksSearchViewController()
@@ -42,27 +39,53 @@ final class BooksSearchViewController: UIViewController {
 }
 
 extension BooksSearchViewController {
+    func updateLoading(_ loading: BooksListViewModelLoading?) {
+        switch loading {
+        case .nextPage:
+            nextPageLoadingSpinner?.removeFromSuperview()
+            nextPageLoadingSpinner = tableView.makeActivityIndicator(size: .init(width: tableView.frame.width, height: 44))
+            tableView.tableFooterView = nextPageLoadingSpinner
+        case .fullScreen:
+            LoadingView.show()
+            tableView.tableFooterView = nil
+        case .none:
+            LoadingView.hide()
+        }
+    }
+    
     private func setUp() {
         setUpSearchBarController()
         setAllDelegates()
         addAllSubviews()
         setAllConstraints()
         setupSearchController()
-        viewModel.onUpdated = {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
+        setObservable()
+    }
+    
+    private func setObservable() {
+        viewModel.itemsObserverable
+            .bind(to: tableView.rx.items(cellIdentifier: BookListCell.identifier,
+                                         cellType: BookListCell.self)) { [weak self] index, item, cell in
+                cell.configure(viewModel: item, imageRepository: self?.imageRepository)
+                if let itemsCount = self?.viewModel.itemsCount,
+                   index == itemsCount - 1 {
+                    self?.viewModel.didLoadNextPage()
+                }
+            }.disposed(by: disposeBag)
+        
+        viewModel.loadingObservable
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] loading in
+                self?.updateLoading(loading)
+            }.disposed(by: disposeBag)
     }
     
     private func addAllSubviews() {
         view.addSubview(tableView)
-        view.addSubview(emptyLabel)
     }
     
     private func setAllDelegates() {
         tableView.delegate = self
-        tableView.dataSource = self
     }
     
     private func setUpSearchBarController() {
@@ -86,21 +109,9 @@ extension BooksSearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
-}
-
-extension BooksSearchViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.items.count
-    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: BookListCell.identifier, for: indexPath) as? BookListCell else {
-            return UITableViewCell()
-        }
-        
-        cell.configure(viewModel: viewModel.items[indexPath.row], imageRepository: imageRepository)
-        
-        return cell
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.showBookDetails(at: indexPath.row)
     }
 }
 
@@ -116,16 +127,4 @@ extension BooksSearchViewController: UISearchBarDelegate {
     }
 }
 
-extension BooksSearchViewController: UISearchControllerDelegate {
-    public func willPresentSearchController(_ searchController: UISearchController) {
-        
-    }
-
-    public func willDismissSearchController(_ searchController: UISearchController) {
-        
-    }
-
-    public func didDismissSearchController(_ searchController: UISearchController) {
-        
-    }
-}
+extension BooksSearchViewController: UISearchControllerDelegate {}

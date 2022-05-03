@@ -5,7 +5,7 @@
 //  Created by 최정민 on 2022/04/30.
 //
 
-import Foundation
+import UIKit
 
 protocol NetworkManager {
     init(networkLoader: NetworkLoader)
@@ -15,11 +15,8 @@ protocol NetworkManager {
                                response: Response.Type,
                                completion: @escaping (Result<Response, Error>) -> Void) -> Cancellable? where Response: Decodable
     
-    /// application/json
-    func sendRequest<Request, Response>(url: URL,
-                                        request: RequestData<Request>,
-                                        response: Response.Type,
-                                        completion: @escaping (Result<Response, Error>) -> Void) -> Cancellable? where Request: Encodable, Response: Decodable
+    func sendRequest(url: URL,
+                               completion: @escaping (Result<UIImage, Error>) -> Void) -> Cancellable?
 }
 
 final public class DefaultNetworkManager: NetworkManager {
@@ -40,48 +37,26 @@ final public class DefaultNetworkManager: NetworkManager {
         }
     }
     
-    /// application/json
-    func sendRequest<Request, Response>(url: URL,
-                                        request: RequestData<Request>,
-                                        response: Response.Type,
-                                        completion: @escaping (Result<Response, Error>) -> Void) -> Cancellable? where Request: Encodable, Response: Decodable {
+    func sendRequest(url: URL,
+                               completion: @escaping (Result<UIImage, Error>) -> Void) -> Cancellable? {
         
-        guard let request = setRequest(url: url,
-                                       httpMethod: request.httpMethod,
-                                       accessToken: request.accessToken,
-                                       requestObject: request.request) else { return nil }
-        
-        return networkLoader.loadData(with: request) { [weak self] result in
-            self?.handleResponseData(result: result, completion: completion)
+        return networkLoader.loadData(with: url) { result in
+            switch result {
+            case .success(let data) :
+                guard let image = UIImage(data: data)
+                    else {
+                        return
+                }
+                completion(.success(image))
+            case .failure(let error) :
+                "\(error.localizedDescription)".log()
+            }
         }
     }
     
+
     // MARK: Private functions
     
-    private func encodedData<T>(data: T) -> Data? where T: Encodable {
-        let encoder = JSONEncoder()
-        
-        return try? encoder.encode(data)
-    }
-    
-    private func setRequest<Request>(url: URL,
-                                     httpMethod: HTTPMethod,
-                                     accessToken: String? = nil,
-                                     requestObject: Request?) -> URLRequest? where Request: Encodable {
-        var request = URLRequest(url: url)
-        
-        request.setValue(DataForm.applicationJson.rawValue,
-                         forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
-        request.httpMethod = httpMethod.rawValue
-        if let accessToken = accessToken {
-            request.addValue(accessToken, forHTTPHeaderField: HTTPHeaderField.accessToken.rawValue)
-        }
-        if let requestObject = requestObject {
-            request.httpBody = encodedData(data: requestObject)
-        }
-        
-        return request
-    }
     
     private func handleResponseData<Response>(result: Result<Data, Error>,
                                               completion: @escaping (Result<Response, Error>) -> Void) where Response: Decodable {

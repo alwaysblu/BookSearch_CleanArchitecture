@@ -78,6 +78,14 @@ final class BookListCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func prepareForReuse() {
+        posterImageView.image = nil
+        titleLabel.text = nil
+        dateLabel.text = nil
+        descriptionLabel.text = nil
+        loadTask = nil
+    }
 }
 
 extension BookListCell {
@@ -94,7 +102,6 @@ extension BookListCell {
             }
         }
     }
-    
 }
 
 extension BookListCell {

@@ -13,4 +13,5 @@ struct Book {
     let publishedDate: String?
     let smallThumbnail: String
     let thumbnail: String
+    let infoLink: String
 }

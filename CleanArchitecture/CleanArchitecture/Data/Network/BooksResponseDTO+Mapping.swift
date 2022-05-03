@@ -24,6 +24,7 @@ extension BooksResponseDTO {
         let authors: [String]?
         let publishedDate: String?
         let imageLinks: Thumbnail?
+        let infoLink: String
     }
     
     struct Thumbnail: Decodable {
@@ -36,19 +37,19 @@ extension BooksResponseDTO {
 
 extension BooksResponseDTO {
     func toDomain() -> BookPage {
-        return .init(page: 0,
-                     totalPages: totalItems,
+        return .init(totalItems: totalItems,
                      books: items.map { $0.toDomain() })
     }
 }
 
 extension BooksResponseDTO.BookDTO {
     func toDomain() -> Book {
-        return .init(title: self.volumeInfo.title,
-                     authors: self.volumeInfo.authors,
-                     publishedDate: self.volumeInfo.publishedDate,
-                     smallThumbnail: self.volumeInfo.imageLinks?.smallThumbnail ?? "",
-                     thumbnail: self.volumeInfo.imageLinks?.thumbnail ?? "")
+        return .init(title: volumeInfo.title,
+                     authors: volumeInfo.authors,
+                     publishedDate: volumeInfo.publishedDate,
+                     smallThumbnail: volumeInfo.imageLinks?.smallThumbnail ?? "",
+                     thumbnail: volumeInfo.imageLinks?.thumbnail ?? "",
+                     infoLink: volumeInfo.infoLink)
     }
 }
 

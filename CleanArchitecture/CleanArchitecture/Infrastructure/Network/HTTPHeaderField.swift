@@ -8,5 +8,4 @@ import Foundation
 
 public enum HTTPHeaderField: String {
     case contentType = "Content-Type"
-    case accessToken = "x-access-token"
 }

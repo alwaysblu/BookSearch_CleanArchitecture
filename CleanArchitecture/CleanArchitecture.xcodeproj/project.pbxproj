@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -32,7 +32,6 @@
 		8AEE1B47281D367A00A9E1B1 /* HTTPHeaderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1B46281D367A00A9E1B1 /* HTTPHeaderField.swift */; };
 		8AEE1B49281D369500A9E1B1 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1B48281D369500A9E1B1 /* HTTPMethod.swift */; };
 		8AEE1B4F281D36DF00A9E1B1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1B4E281D36DF00A9E1B1 /* NetworkManager.swift */; };
-		8AEE1B51281D36F400A9E1B1 /* RequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1B50281D36F400A9E1B1 /* RequestData.swift */; };
 		8AEE1B54281D398F00A9E1B1 /* BooksRequestDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1B53281D398F00A9E1B1 /* BooksRequestDTO+Mapping.swift */; };
 		8AEE1B56281D39A300A9E1B1 /* BooksResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1B55281D39A300A9E1B1 /* BooksResponseDTO+Mapping.swift */; };
 		8AEE1B5A281D49E500A9E1B1 /* BooksSearchViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1B59281D49E500A9E1B1 /* BooksSearchViewController+Constraints.swift */; };
@@ -41,7 +40,6 @@
 		8AEE1B61281D7B2E00A9E1B1 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1B60281D7B2E00A9E1B1 /* AppConfiguration.swift */; };
 		8AEE1B63281D8E7900A9E1B1 /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1B62281D8E7900A9E1B1 /* AppFlowCoordinator.swift */; };
 		8AEE1B66281D8F4E00A9E1B1 /* BooksSearchFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1B65281D8F4E00A9E1B1 /* BooksSearchFlowCoordinator.swift */; };
-		8AEE1B68281D9B3B00A9E1B1 /* BooksSearchViewModelActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1B67281D9B3B00A9E1B1 /* BooksSearchViewModelActions.swift */; };
 		8AEE1B6F281EE88000A9E1B1 /* SearchBooksUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1B6E281EE88000A9E1B1 /* SearchBooksUseCaseTests.swift */; };
 		8AEE1B70281EE9BC00A9E1B1 /* BookPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1B2D281D0FAF00A9E1B1 /* BookPage.swift */; };
 		8AEE1B71281EE9C200A9E1B1 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1B2B281D0E9C00A9E1B1 /* Book.swift */; };
@@ -49,6 +47,13 @@
 		8AEE1BC5281FB1F800A9E1B1 /* BookQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1BC4281FB1F800A9E1B1 /* BookQuery.swift */; };
 		8AEE1BC7281FF33B00A9E1B1 /* ImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1BC6281FF33B00A9E1B1 /* ImageRepository.swift */; };
 		8AEE1BC9281FF38600A9E1B1 /* DefaultImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1BC8281FF38600A9E1B1 /* DefaultImageRepository.swift */; };
+		8AEE1BD12820B03800A9E1B1 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 8AEE1BD02820B03800A9E1B1 /* RxCocoa */; };
+		8AEE1BD32820B03800A9E1B1 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 8AEE1BD22820B03800A9E1B1 /* RxBlocking */; };
+		8AEE1BD82820B03800A9E1B1 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8AEE1BD72820B03800A9E1B1 /* RxSwift */; };
+		8AEE1BE02820B03800A9E1B1 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 8AEE1BDF2820B03800A9E1B1 /* RxRelay */; };
+		8AEE1BE82820D18500A9E1B1 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1BE72820D18500A9E1B1 /* UITableView+Extension.swift */; };
+		8AEE1BEA2820FB2400A9E1B1 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1BE92820FB2400A9E1B1 /* LoadingView.swift */; };
+		8AEE1BEC2821041500A9E1B1 /* RequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1BEB2821041500A9E1B1 /* RequestData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +72,19 @@
 			remoteInfo = CleanArchitecture;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8AEE1BE42820B03800A9E1B1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8AEE1AE1281BFB4C00A9E1B1 /* CleanArchitecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanArchitecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,7 +118,6 @@
 		8AEE1B46281D367A00A9E1B1 /* HTTPHeaderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaderField.swift; sourceTree = "<group>"; };
 		8AEE1B48281D369500A9E1B1 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		8AEE1B4E281D36DF00A9E1B1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		8AEE1B50281D36F400A9E1B1 /* RequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestData.swift; sourceTree = "<group>"; };
 		8AEE1B53281D398F00A9E1B1 /* BooksRequestDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BooksRequestDTO+Mapping.swift"; sourceTree = "<group>"; };
 		8AEE1B55281D39A300A9E1B1 /* BooksResponseDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BooksResponseDTO+Mapping.swift"; sourceTree = "<group>"; };
 		8AEE1B59281D49E500A9E1B1 /* BooksSearchViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BooksSearchViewController+Constraints.swift"; sourceTree = "<group>"; };
@@ -109,11 +126,13 @@
 		8AEE1B60281D7B2E00A9E1B1 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		8AEE1B62281D8E7900A9E1B1 /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		8AEE1B65281D8F4E00A9E1B1 /* BooksSearchFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksSearchFlowCoordinator.swift; sourceTree = "<group>"; };
-		8AEE1B67281D9B3B00A9E1B1 /* BooksSearchViewModelActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksSearchViewModelActions.swift; sourceTree = "<group>"; };
 		8AEE1B6E281EE88000A9E1B1 /* SearchBooksUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBooksUseCaseTests.swift; sourceTree = "<group>"; };
 		8AEE1BC4281FB1F800A9E1B1 /* BookQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookQuery.swift; sourceTree = "<group>"; };
 		8AEE1BC6281FF33B00A9E1B1 /* ImageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRepository.swift; sourceTree = "<group>"; };
 		8AEE1BC8281FF38600A9E1B1 /* DefaultImageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultImageRepository.swift; sourceTree = "<group>"; };
+		8AEE1BE72820D18500A9E1B1 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		8AEE1BE92820FB2400A9E1B1 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		8AEE1BEB2821041500A9E1B1 /* RequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +140,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AEE1BE02820B03800A9E1B1 /* RxRelay in Frameworks */,
+				8AEE1BD82820B03800A9E1B1 /* RxSwift in Frameworks */,
+				8AEE1BD12820B03800A9E1B1 /* RxCocoa in Frameworks */,
+				8AEE1BD32820B03800A9E1B1 /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +194,7 @@
 				8AEE1B3C281D35BE00A9E1B1 /* Infrastructure */,
 				8AEE1B25281C1FDA00A9E1B1 /* Common */,
 				8AEE1B1B281C0F5200A9E1B1 /* Resources */,
+				8AEE1BE52820D16F00A9E1B1 /* Utils */,
 			);
 			path = CleanArchitecture;
 			sourceTree = "<group>";
@@ -269,7 +293,6 @@
 			children = (
 				8AEE1B28281D0A1400A9E1B1 /* BooksSearchViewModel.swift */,
 				8AEE1B35281D1E3800A9E1B1 /* BooksSearchItemViewModel.swift */,
-				8AEE1B67281D9B3B00A9E1B1 /* BooksSearchViewModelActions.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -354,7 +377,7 @@
 				8AEE1B48281D369500A9E1B1 /* HTTPMethod.swift */,
 				8AEE1B3E281D35F100A9E1B1 /* NetworkLoader.swift */,
 				8AEE1B4E281D36DF00A9E1B1 /* NetworkManager.swift */,
-				8AEE1B50281D36F400A9E1B1 /* RequestData.swift */,
+				8AEE1BEB2821041500A9E1B1 /* RequestData.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -408,6 +431,23 @@
 			path = UseCases;
 			sourceTree = "<group>";
 		};
+		8AEE1BE52820D16F00A9E1B1 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8AEE1BE62820D17500A9E1B1 /* Extensions */,
+				8AEE1BE92820FB2400A9E1B1 /* LoadingView.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		8AEE1BE62820D17500A9E1B1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8AEE1BE72820D18500A9E1B1 /* UITableView+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -418,12 +458,19 @@
 				8AEE1ADD281BFB4C00A9E1B1 /* Sources */,
 				8AEE1ADE281BFB4C00A9E1B1 /* Frameworks */,
 				8AEE1ADF281BFB4C00A9E1B1 /* Resources */,
+				8AEE1BE42820B03800A9E1B1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = CleanArchitecture;
+			packageProductDependencies = (
+				8AEE1BD02820B03800A9E1B1 /* RxCocoa */,
+				8AEE1BD22820B03800A9E1B1 /* RxBlocking */,
+				8AEE1BD72820B03800A9E1B1 /* RxSwift */,
+				8AEE1BDF2820B03800A9E1B1 /* RxRelay */,
+			);
 			productName = CleanArchitecture;
 			productReference = 8AEE1AE1281BFB4C00A9E1B1 /* CleanArchitecture.app */;
 			productType = "com.apple.product-type.application";
@@ -495,6 +542,9 @@
 				Base,
 			);
 			mainGroup = 8AEE1AD8281BFB4C00A9E1B1;
+			packageReferences = (
+				8AEE1BCA2820B03800A9E1B1 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = 8AEE1AE2281BFB4C00A9E1B1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -543,12 +593,12 @@
 				8AEE1B47281D367A00A9E1B1 /* HTTPHeaderField.swift in Sources */,
 				8AEE1B5F281D56AA00A9E1B1 /* BooksSceneDIContainer.swift in Sources */,
 				8AEE1B49281D369500A9E1B1 /* HTTPMethod.swift in Sources */,
-				8AEE1B68281D9B3B00A9E1B1 /* BooksSearchViewModelActions.swift in Sources */,
 				8AEE1BC7281FF33B00A9E1B1 /* ImageRepository.swift in Sources */,
 				8AEE1B22281C190200A9E1B1 /* BookListCell.swift in Sources */,
 				8AEE1B29281D0A1400A9E1B1 /* BooksSearchViewModel.swift in Sources */,
 				8AEE1B36281D1E3800A9E1B1 /* BooksSearchItemViewModel.swift in Sources */,
 				8AEE1B41281D361400A9E1B1 /* DataError.swift in Sources */,
+				8AEE1BEC2821041500A9E1B1 /* RequestData.swift in Sources */,
 				8AEE1BC5281FB1F800A9E1B1 /* BookQuery.swift in Sources */,
 				8AEE1B2E281D0FAF00A9E1B1 /* BookPage.swift in Sources */,
 				8AEE1B43281D363000A9E1B1 /* DataForm.swift in Sources */,
@@ -559,8 +609,8 @@
 				8AEE1B30281D118000A9E1B1 /* SearchBooksUseCase.swift in Sources */,
 				8AEE1B34281D17B600A9E1B1 /* Cancellable.swift in Sources */,
 				8AEE1B38281D2F0E00A9E1B1 /* String+Extension.swift in Sources */,
-				8AEE1B51281D36F400A9E1B1 /* RequestData.swift in Sources */,
 				8AEE1AE9281BFB4C00A9E1B1 /* BooksSearchViewController.swift in Sources */,
+				8AEE1BE82820D18500A9E1B1 /* UITableView+Extension.swift in Sources */,
 				8AEE1B3B281D33EA00A9E1B1 /* DefaultBooksRepository.swift in Sources */,
 				8AEE1B24281C1B5300A9E1B1 /* BookListCell+Constraints.swift in Sources */,
 				8AEE1B66281D8F4E00A9E1B1 /* BooksSearchFlowCoordinator.swift in Sources */,
@@ -570,6 +620,7 @@
 				8AEE1B3F281D35F100A9E1B1 /* NetworkLoader.swift in Sources */,
 				8AEE1BC9281FF38600A9E1B1 /* DefaultImageRepository.swift in Sources */,
 				8AEE1B61281D7B2E00A9E1B1 /* AppConfiguration.swift in Sources */,
+				8AEE1BEA2820FB2400A9E1B1 /* LoadingView.swift in Sources */,
 				8AEE1B56281D39A300A9E1B1 /* BooksResponseDTO+Mapping.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -899,6 +950,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8AEE1BCA2820B03800A9E1B1 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8AEE1BD02820B03800A9E1B1 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8AEE1BCA2820B03800A9E1B1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		8AEE1BD22820B03800A9E1B1 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8AEE1BCA2820B03800A9E1B1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		8AEE1BD72820B03800A9E1B1 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8AEE1BCA2820B03800A9E1B1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		8AEE1BDF2820B03800A9E1B1 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8AEE1BCA2820B03800A9E1B1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		8AEE1AED281BFB4C00A9E1B1 /* CleanArchitecture.xcdatamodeld */ = {

@@ -18,21 +18,16 @@ final class DefaultImageRepository: ImageRepository {
     func downloadImage(url: String, completion: @escaping (Result<UIImage?, Error>) -> Void) -> Cancellable? {
         guard let url = URL(string: url) else { return nil }
         var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-
-        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard
-                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                let data = data, error == nil,
-                let image = UIImage(data: data)
-                else {
-                    return
-            }
-            completion(.success(image))
-        }
+        request.httpMethod = HTTPMethod.get.rawValue
         
-        dataTask.resume()
+        let dataTask = dataTransferService.sendRequest(url: url) { result in
+            switch result {
+            case .success(let image) :
+                completion(.success(image))
+            case .failure(let error) :
+                "\(error.localizedDescription)".log()
+            }
+        }
         
         return dataTask
     }
