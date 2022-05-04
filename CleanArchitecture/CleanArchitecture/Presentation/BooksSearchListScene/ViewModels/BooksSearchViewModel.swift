@@ -33,7 +33,6 @@ protocol BooksSearchViewModelOutput {
 typealias BooksSearchViewModel = BooksSearchViewModelInput & BooksSearchViewModelOutput
 
 final class DefaultBooksSearchViewModel: BooksSearchViewModel {
-    private var currentPage: Int = 0
     private var totalItems: Int?
     private let maxResult: Int = 20
     private let useCase: SearchBooksUseCase
@@ -59,7 +58,7 @@ final class DefaultBooksSearchViewModel: BooksSearchViewModel {
         }
         
         static func getCountOfViewModels(pages: [BookPage]) -> Int {
-            return pages.flatMap({ $0.books }).map (BooksSearchItemViewModel.init).count
+            return getViewModels(pages: pages).count
         }
     }
     
@@ -83,15 +82,12 @@ extension DefaultBooksSearchViewModel {
     private func appendPage(_ booksPage: BookPage) {
         totalItems = booksPage.totalItems
         pages = pages + [booksPage]
-        currentPage = pages.count
         let items = BookPageListHandler.getViewModels(pages: pages)
         itemsCount = items.count
         itemsObserverable.onNext(items)
     }
     
     private func resetPages() {
-        currentPage = 0
-        
         pages.removeAll()
         itemsObserverable.onNext([])
     }

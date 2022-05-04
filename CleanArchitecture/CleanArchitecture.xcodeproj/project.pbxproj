@@ -14,6 +14,11 @@
 		8AA1F21128223FBB00824A46 /* BooksSearchItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1B35281D1E3800A9E1B1 /* BooksSearchItemViewModel.swift */; };
 		8AA1F21228223FCC00824A46 /* BookQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1BC4281FB1F800A9E1B1 /* BookQuery.swift */; };
 		8AA1F21328223FDF00824A46 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1B37281D2F0E00A9E1B1 /* String+Extension.swift */; };
+		8AA1F2182822685000824A46 /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA1F2172822685000824A46 /* NetworkTests.swift */; };
+		8AA1F21B2822844000824A46 /* MockUrlProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA1F21A2822844000824A46 /* MockUrlProtocol.swift */; };
+		8AA1F21C2822878000824A46 /* BooksResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1B55281D39A300A9E1B1 /* BooksResponseDTO+Mapping.swift */; };
+		8AA1F21D2822883000824A46 /* NetworkLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1B3E281D35F100A9E1B1 /* NetworkLoader.swift */; };
+		8AA1F21E2822895000824A46 /* DataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1B40281D361400A9E1B1 /* DataError.swift */; };
 		8AEE1AE5281BFB4C00A9E1B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1AE4281BFB4C00A9E1B1 /* AppDelegate.swift */; };
 		8AEE1AE7281BFB4C00A9E1B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1AE6281BFB4C00A9E1B1 /* SceneDelegate.swift */; };
 		8AEE1AE9281BFB4C00A9E1B1 /* BooksSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1AE8281BFB4C00A9E1B1 /* BooksSearchViewController.swift */; };
@@ -93,6 +98,8 @@
 
 /* Begin PBXFileReference section */
 		8AA1F20E28223C9E00824A46 /* BooksSearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksSearchViewModelTests.swift; sourceTree = "<group>"; };
+		8AA1F2172822685000824A46 /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
+		8AA1F21A2822844000824A46 /* MockUrlProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUrlProtocol.swift; sourceTree = "<group>"; };
 		8AEE1AE1281BFB4C00A9E1B1 /* CleanArchitecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanArchitecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AEE1AE4281BFB4C00A9E1B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8AEE1AE6281BFB4C00A9E1B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -184,6 +191,31 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		8AA1F215282262A900824A46 /* Infrastructures */ = {
+			isa = PBXGroup;
+			children = (
+				8AA1F216282262C200824A46 /* Network */,
+			);
+			path = Infrastructures;
+			sourceTree = "<group>";
+		};
+		8AA1F216282262C200824A46 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				8AA1F2192822842900824A46 /* Mocks */,
+				8AA1F2172822685000824A46 /* NetworkTests.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		8AA1F2192822842900824A46 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				8AA1F21A2822844000824A46 /* MockUrlProtocol.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		8AEE1AD8281BFB4C00A9E1B1 = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +253,7 @@
 		8AEE1AFD281BFB4D00A9E1B1 /* CleanArchitectureTests */ = {
 			isa = PBXGroup;
 			children = (
+				8AA1F215282262A900824A46 /* Infrastructures */,
 				8AA1F20B28223AFD00824A46 /* Presentation */,
 				8AEE1B69281EE81700A9E1B1 /* Domain */,
 				8AEE1AFE281BFB4D00A9E1B1 /* CleanArchitectureTests.swift */,
@@ -639,17 +672,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A68645E282145DA00FDAAFC /* Cancellable.swift in Sources */,
+				8AA1F21C2822878000824A46 /* BooksResponseDTO+Mapping.swift in Sources */,
+				8AA1F21B2822844000824A46 /* MockUrlProtocol.swift in Sources */,
+				8AA1F21E2822895000824A46 /* DataError.swift in Sources */,
 				8AEE1B6F281EE88000A9E1B1 /* SearchBooksUseCaseTests.swift in Sources */,
 				8AA1F21128223FBB00824A46 /* BooksSearchItemViewModel.swift in Sources */,
 				8AEE1B72281EE9CB00A9E1B1 /* BooksRepository.swift in Sources */,
 				8AA1F21328223FDF00824A46 /* String+Extension.swift in Sources */,
 				8AEE1AFF281BFB4D00A9E1B1 /* CleanArchitectureTests.swift in Sources */,
+				8AA1F2182822685000824A46 /* NetworkTests.swift in Sources */,
 				8AEE1B71281EE9C200A9E1B1 /* Book.swift in Sources */,
 				8AA1F21028223ED500824A46 /* BooksSearchViewModel.swift in Sources */,
 				8AA1F21228223FCC00824A46 /* BookQuery.swift in Sources */,
 				8AA1F20F28223C9E00824A46 /* BooksSearchViewModelTests.swift in Sources */,
 				8AA1F20C28223B4000824A46 /* SearchBooksUseCase.swift in Sources */,
 				8AEE1B70281EE9BC00A9E1B1 /* BookPage.swift in Sources */,
+				8AA1F21D2822883000824A46 /* NetworkLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

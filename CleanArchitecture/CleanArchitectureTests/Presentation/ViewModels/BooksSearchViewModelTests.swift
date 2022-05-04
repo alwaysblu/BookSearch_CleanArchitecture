@@ -39,7 +39,6 @@ class BooksSearchViewModelTests: XCTestCase {
         }
     }
     
-    
     func testBookPageListHandler_whenBooksPageListHandler성공하는경우_then예상값과일치() {
         XCTAssertEqual(DefaultBooksSearchViewModel.BookPageListHandler.getBooks(pages: bookPages), [book])
         XCTAssertEqual(DefaultBooksSearchViewModel.BookPageListHandler.getViewModels(pages: bookPages), [viewModel])
@@ -52,6 +51,17 @@ class BooksSearchViewModelTests: XCTestCase {
         XCTAssertNotEqual(DefaultBooksSearchViewModel.BookPageListHandler.getCountOfViewModels(pages: bookPages), 2)
     }
     
-    
+    func test_whenItemsCount가잘설정되는지확인하는경우_thenItemsCount는1개() {
+        // given
+        let searchMoviesUseCaseMock = SearchBooksUseCaseeMock()
+        searchMoviesUseCaseMock.expectation = self.expectation(description: "itemsCount == 1")
+        let viewModel = DefaultBooksSearchViewModel(useCase: searchMoviesUseCaseMock, actions: BooksSearchViewModelActions(showBookDetails: {_ in}))
+        // when
+        viewModel.didSearch(query: "title")
+        
+        // then
+        waitForExpectations(timeout: 5, handler: nil)
+        XCTAssertEqual(viewModel.itemsCount, 1)
+    }
     
 }

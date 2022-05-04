@@ -9,17 +9,17 @@ import Foundation
 
 // MARK: - Data Transfer Object
 
-struct BooksResponseDTO: Decodable {
+struct BooksResponseDTO: Codable {
     let totalItems: Int
     let items: [BookDTO]
 }
 
 extension BooksResponseDTO {
-    struct BookDTO: Decodable {
+    struct BookDTO: Codable {
         let volumeInfo: VolumeInfo
     }
     
-    struct VolumeInfo: Decodable {
+    struct VolumeInfo: Codable {
         let title: String?
         let authors: [String]?
         let publishedDate: String?
@@ -27,7 +27,7 @@ extension BooksResponseDTO {
         let infoLink: String
     }
     
-    struct Thumbnail: Decodable {
+    struct Thumbnail: Codable {
         let thumbnail: String
     }
 }
