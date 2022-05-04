@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8A68645E282145DA00FDAAFC /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1B33281D17B600A9E1B1 /* Cancellable.swift */; };
+		8AA1F20C28223B4000824A46 /* SearchBooksUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1B2F281D118000A9E1B1 /* SearchBooksUseCase.swift */; };
 		8AEE1AE5281BFB4C00A9E1B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1AE4281BFB4C00A9E1B1 /* AppDelegate.swift */; };
 		8AEE1AE7281BFB4C00A9E1B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1AE6281BFB4C00A9E1B1 /* SceneDelegate.swift */; };
 		8AEE1AE9281BFB4C00A9E1B1 /* BooksSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE1AE8281BFB4C00A9E1B1 /* BooksSearchViewController.swift */; };
@@ -161,6 +162,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8AA1F20B28223AFD00824A46 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				8AA1F20D28223BB400824A46 /* ViewModels */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		8AA1F20D28223BB400824A46 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		8AEE1AD8281BFB4C00A9E1B1 = {
 			isa = PBXGroup;
 			children = (
@@ -198,7 +214,7 @@
 		8AEE1AFD281BFB4D00A9E1B1 /* CleanArchitectureTests */ = {
 			isa = PBXGroup;
 			children = (
-				8AEE1B6A281EE82000A9E1B1 /* Presentation */,
+				8AA1F20B28223AFD00824A46 /* Presentation */,
 				8AEE1B69281EE81700A9E1B1 /* Domain */,
 				8AEE1AFE281BFB4D00A9E1B1 /* CleanArchitectureTests.swift */,
 				8AEE1B00281BFB4D00A9E1B1 /* Info.plist */,
@@ -399,13 +415,6 @@
 				8AEE1B6B281EE83500A9E1B1 /* UseCases */,
 			);
 			path = Domain;
-			sourceTree = "<group>";
-		};
-		8AEE1B6A281EE82000A9E1B1 /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Presentation;
 			sourceTree = "<group>";
 		};
 		8AEE1B6B281EE83500A9E1B1 /* UseCases */ = {
@@ -627,6 +636,7 @@
 				8AEE1B72281EE9CB00A9E1B1 /* BooksRepository.swift in Sources */,
 				8AEE1AFF281BFB4D00A9E1B1 /* CleanArchitectureTests.swift in Sources */,
 				8AEE1B71281EE9C200A9E1B1 /* Book.swift in Sources */,
+				8AA1F20C28223B4000824A46 /* SearchBooksUseCase.swift in Sources */,
 				8AEE1B70281EE9BC00A9E1B1 /* BookPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,19 +8,6 @@
 import Foundation
 import RxSwift
 
-enum BookPageListHandler {
-    static func getViewModels(pages: [BookPage]) -> [BooksSearchItemViewModel] {
-        return pages.flatMap{$0.books}.map (BooksSearchItemViewModel.init)
-    }
-    static func getBooks(pages: [BookPage]) -> [Book] {
-        return pages.flatMap{$0.books}
-    }
-    
-    static func getCountOfViewModels(pages: [BookPage]) -> Int {
-        return pages.flatMap({ $0.books }).map (BooksSearchItemViewModel.init).count
-    }
-}
-
 struct BooksSearchViewModelActions {
     let showBookDetails: (Book) -> Void
 }
@@ -60,6 +47,19 @@ final class DefaultBooksSearchViewModel: BooksSearchViewModel {
     private var loadTask: Cancellable? {
         willSet {
             loadTask?.cancel()
+        }
+    }
+    
+    enum BookPageListHandler {
+        static func getViewModels(pages: [BookPage]) -> [BooksSearchItemViewModel] {
+            return pages.flatMap{$0.books}.map (BooksSearchItemViewModel.init)
+        }
+        static func getBooks(pages: [BookPage]) -> [Book] {
+            return pages.flatMap{$0.books}
+        }
+        
+        static func getCountOfViewModels(pages: [BookPage]) -> Int {
+            return pages.flatMap({ $0.books }).map (BooksSearchItemViewModel.init).count
         }
     }
     
