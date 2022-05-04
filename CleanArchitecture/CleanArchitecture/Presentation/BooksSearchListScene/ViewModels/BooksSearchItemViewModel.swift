@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BooksSearchItemViewModel {
+struct BooksSearchItemViewModel: Equatable {
     let title: String?
     let authors: [String]?
     let publishedDate: String?
