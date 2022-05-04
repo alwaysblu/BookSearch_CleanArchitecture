@@ -9,5 +9,5 @@ import UIKit
 
 protocol ImageRepository {
     func downloadImage(urlString: String,
-                    completion: @escaping (Result<UIImage?, Error>) -> Void) -> Cancellable?
+                       completion: @escaping (Result<UIImage?, Error>) -> Void) -> Cancellable?
 }

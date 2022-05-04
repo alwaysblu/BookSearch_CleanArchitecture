@@ -39,18 +39,6 @@ class BooksSearchViewModelTests: XCTestCase {
         }
     }
     
-    func testBookPageListHandler_whenBooksPageListHandler성공하는경우_then예상값과일치() {
-        XCTAssertEqual(DefaultBooksSearchViewModel.BookPageListHandler.getBooks(pages: bookPages), [book])
-        XCTAssertEqual(DefaultBooksSearchViewModel.BookPageListHandler.getViewModels(pages: bookPages), [viewModel])
-        XCTAssertEqual(DefaultBooksSearchViewModel.BookPageListHandler.getCountOfViewModels(pages: bookPages), 1)
-    }
-    
-    func testBookPageListHandler_whenBooksPageListHandler실패하는경우_then예상값과불일치() {
-        XCTAssertNotEqual(DefaultBooksSearchViewModel.BookPageListHandler.getBooks(pages: bookPages), [])
-        XCTAssertNotEqual(DefaultBooksSearchViewModel.BookPageListHandler.getViewModels(pages: bookPages), [])
-        XCTAssertNotEqual(DefaultBooksSearchViewModel.BookPageListHandler.getCountOfViewModels(pages: bookPages), 2)
-    }
-    
     func test_whenItemsCount가잘설정되는지확인하는경우_thenItemsCount는1개() {
         // given
         let searchMoviesUseCaseMock = SearchBooksUseCaseeMock()

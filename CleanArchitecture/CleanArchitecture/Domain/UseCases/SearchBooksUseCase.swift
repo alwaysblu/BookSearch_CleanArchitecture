@@ -27,6 +27,9 @@ final class DefaultSearchBooksUseCase: SearchBooksUseCase {
     
     func search(request: SearchBooksUseCaseRequest,
                 completion: @escaping (Result<BookPage, Error>) -> Void) -> Cancellable? {
-        return booksRepository.fetchBooks(query: request.query, startIndex: request.startIndex, maxResults: request.maxResult, completion: completion)
+        return booksRepository.fetchBooks(query: request.query,
+                                          startIndex: request.startIndex,
+                                          maxResults: request.maxResult,
+                                          completion: completion)
     }
 }

@@ -19,15 +19,16 @@ class NetworkTests: XCTestCase {
         let urlSession = URLSession.init(configuration: configuration)
         networkLoader = DefaultNetworkLoader(session: urlSession)
     }
-
+    
     func test_get_성공() {
         expectation = expectation(description: "Expectation")
+        expectation.expectedFulfillmentCount = 1
         let response = BooksResponseDTO(totalItems: 1,
                                         items: [BooksResponseDTO.BookDTO(volumeInfo: BooksResponseDTO.VolumeInfo(title: "title",
-                                                                                                                                authors: ["authors"],
-                                                                                                                                publishedDate: "publishedDate",
-                                                                                                                                imageLinks: nil,
-                                                                                                                                infoLink: "infoLink"))])
+                                                                                                                 authors: ["authors"],
+                                                                                                                 publishedDate: "publishedDate",
+                                                                                                                 imageLinks: nil,
+                                                                                                                 infoLink: "infoLink"))])
         let data = try? JSONEncoder().encode(response)
         
         MockURLProtocol.requestHandler = { request in
@@ -51,7 +52,6 @@ class NetworkTests: XCTestCase {
             self?.expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1.0)
-        
     }
 
 }

@@ -48,20 +48,7 @@ final class DefaultBooksSearchViewModel: BooksSearchViewModel {
             loadTask?.cancel()
         }
     }
-    
-    enum BookPageListHandler {
-        static func getViewModels(pages: [BookPage]) -> [BooksSearchItemViewModel] {
-            return pages.flatMap{$0.books}.map (BooksSearchItemViewModel.init)
-        }
-        static func getBooks(pages: [BookPage]) -> [Book] {
-            return pages.flatMap{$0.books}
-        }
-        
-        static func getCountOfViewModels(pages: [BookPage]) -> Int {
-            return getViewModels(pages: pages).count
-        }
-    }
-    
+
     init(useCase: SearchBooksUseCase, actions: BooksSearchViewModelActions) {
         self.useCase = useCase
         self.actions = actions
@@ -74,15 +61,10 @@ final class DefaultBooksSearchViewModel: BooksSearchViewModel {
 }
 
 extension DefaultBooksSearchViewModel {
-    func showBookDetails(at index: Int) {
-        let books = BookPageListHandler.getBooks(pages: pages)
-        actions?.showBookDetails(books[index])
-    }
-    
     private func appendPage(_ booksPage: BookPage) {
         totalItems = booksPage.totalItems
         pages = pages + [booksPage]
-        let items = BookPageListHandler.getViewModels(pages: pages)
+        let items = pages.flatMap{$0.books}.map (BooksSearchItemViewModel.init)
         itemsCount = items.count
         itemsObserverable.onNext(items)
     }
@@ -95,10 +77,10 @@ extension DefaultBooksSearchViewModel {
     private func load(bookQuery: BookQuery,
                       loading: BooksListViewModelLoading) {
         guard totalItems == nil ||
-                totalItems ?? 0 > BookPageListHandler.getCountOfViewModels(pages: pages) else {
+                totalItems ?? 0 > pages.flatMap({$0.books}).map (BooksSearchItemViewModel.init).count else {
             return
         }
-        let totalItemsCount = BookPageListHandler.getCountOfViewModels(pages: pages)
+        let totalItemsCount = pages.flatMap({$0.books}).map (BooksSearchItemViewModel.init).count
         
         loadingObservable.onNext(loading)
         query = bookQuery.query
@@ -117,6 +99,11 @@ extension DefaultBooksSearchViewModel {
 }
 
 extension DefaultBooksSearchViewModel {
+    func showBookDetails(at index: Int) {
+        let books = pages.flatMap{$0.books}
+        actions?.showBookDetails(books[index])
+    }
+    
     func didSearch(query: String) {
         guard !query.isEmpty else { return }
         update(bookQuery: BookQuery(query: query))

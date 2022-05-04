@@ -10,7 +10,7 @@ import UIKit
 final class LoadingView {
 
     static var spinner: UIActivityIndicatorView?
-    private static let maximumTime: UInt32 = 5
+    private static let maximumTime: UInt32 = 3
 
     static func show() {
         DispatchQueue.main.async {
